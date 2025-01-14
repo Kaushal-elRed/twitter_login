@@ -2,54 +2,59 @@ group 'com.maru.twitter_login'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.6.10'
-    repositories {
-        google()
-        mavenCentral()
-    }
+  // Updated Kotlin and Gradle plugin versions
+  ext.kotlin_version = '1.9.10'
+  repositories {
+    google()
+    mavenCentral()
+  }
 
-    dependencies {
-        classpath "com.android.tools.build:gradle:4.1.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+  dependencies {
+    // Updated Android Gradle plugin and Kotlin Gradle plugin
+    classpath "com.android.tools.build:gradle:8.0.2"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
 }
 
+// Ensure all subprojects use the proper repositories
 rootProject.allprojects {
-    repositories {
-        google()
-        mavenLocal()
-    }
+  repositories {
+    google()
+    mavenCentral()
+  }
 }
 
+// Apply required plugins
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    namespace 'com.maru.twitter_login'
-    compileSdkVersion 31
+  namespace 'com.maru.twitter_login'
+  compileSdkVersion 34 // Latest compile SDK version
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+  }
 
-    defaultConfig {
-        minSdkVersion 16
-    }
-
-    dependencies {
-        implementation "androidx.browser:browser:1.3.0"
-    }
+  defaultConfig {
+    minSdkVersion 21 // Updated min SDK to a more modern standard
+    targetSdkVersion 34 // Latest target SDK version
+  }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  // Updated Kotlin standard library
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+  // Updated AndroidX Browser dependency
+  implementation "androidx.browser:browser:1.5.0"
 }
